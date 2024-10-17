@@ -1,9 +1,11 @@
 package com.leacooking.LeaCooking.api.dto.ingredient;
 
+import com.leacooking.LeaCooking.api.dto.recipe.RecipeDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
+import java.util.Set;
 
 @Getter
 @Setter

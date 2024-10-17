@@ -3,8 +3,6 @@ package com.leacooking.LeaCooking.api.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -34,7 +32,10 @@ public class Recipe {
     @JoinColumn(name = "id_recipe_type")
     private RecipeType idRecipeType;
 
-    @OneToMany(mappedBy = "idRecipe")
-    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
-
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "id_recipe"),
+            inverseJoinColumns = @JoinColumn(name = "id_ingredient"))
+    private Set<Ingredient> ingredients;
 }

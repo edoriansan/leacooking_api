@@ -21,7 +21,11 @@ public class Ingredient {
     @Column(name = "label", nullable = false)
     private String label;
 
-    @OneToMany(mappedBy = "idIngredient")
-    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "id_ingredient"),
+            inverseJoinColumns = @JoinColumn(name = "id_recipe"))
+    private Set<Recipe> recipes;
 
 }
