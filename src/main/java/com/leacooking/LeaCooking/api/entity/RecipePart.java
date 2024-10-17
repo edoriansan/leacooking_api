@@ -21,7 +21,7 @@ public class RecipePart {
     @Column(name = "label", nullable = false)
     private String label;
 
-    @OneToMany(mappedBy = "idRecipePart")
+    @OneToMany(mappedBy = "recipePart")
     private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
 
 }

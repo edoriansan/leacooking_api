@@ -10,16 +10,17 @@ create table "recipe_type" (
                           label VARCHAR(255) NOT NULL
 );
 
--- Création de la table ingredient
-create table "ingredient" (
-                            id bigint default nextval('ingredient_seq') primary key,
-                            label VARCHAR(255) NOT NULL
-);
-
 -- Création de la table quantity_type
 create table "quantity_type" (
                            id bigint default nextval('quantity_type_seq') primary key,
                            label VARCHAR(255)
+);
+
+-- Création de la table ingredient
+create table "ingredient" (
+                              id bigint default nextval('ingredient_seq') primary key,
+                              label VARCHAR(255) NOT NULL,
+                              id_quantity_type BIGINT REFERENCES quantity_type
 );
 
 -- Création de la table recipe_part
@@ -43,13 +44,15 @@ create table "recipe_ingredient" (
                                     id_recipe BIGINT REFERENCES recipe,
                                     id_ingredient BIGINT REFERENCES ingredient,
                                     ingredient_quantity INT NOT NULL,
-                                    id_quantity_type BIGINT REFERENCES quantity_type,
                                     id_recipe_part BIGINT REFERENCES recipe_part,
                                     PRIMARY KEY (id_recipe, id_ingredient, id_recipe_part)
 );
 
-create index index_recipe__id_recipe_type on recipe (id_recipe_type);
+create index index_recipe__recipe_type on recipe (id_recipe_type);
+create index index_ingredient__quantity_type on ingredient (id_quantity_type);
+
 create index index_recipe_ingredient__recipe on recipe_ingredient (id_recipe);
 create index index_recipe_ingredient__ingredient on recipe_ingredient (id_ingredient);
 create index index_recipe_ingredient__recipe_part on recipe_ingredient (id_recipe_part);
+
 

@@ -3,8 +3,6 @@ package com.leacooking.LeaCooking.api.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -21,11 +19,10 @@ public class Ingredient {
     @Column(name = "label", nullable = false)
     private String label;
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_ingredient",
-            joinColumns = @JoinColumn(name = "id_ingredient"),
-            inverseJoinColumns = @JoinColumn(name = "id_recipe"))
-    private Set<Recipe> recipes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_quantity_type")
+    private QuantityType quantityType;
 
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecipeIngredient> recipeIngredients;
 }

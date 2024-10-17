@@ -21,7 +21,7 @@ public class QuantityType {
     @Column(name = "label")
     private String label;
 
-    @OneToMany(mappedBy = "idQuantityType")
-    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "quantityType")
+    private Set<Ingredient> ingredients = new LinkedHashSet<>();
 
 }

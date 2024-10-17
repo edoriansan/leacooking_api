@@ -30,12 +30,8 @@ public class Recipe {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_recipe_type")
-    private RecipeType idRecipeType;
+    private RecipeType recipeType;
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_ingredient",
-            joinColumns = @JoinColumn(name = "id_recipe"),
-            inverseJoinColumns = @JoinColumn(name = "id_ingredient"))
-    private Set<Ingredient> ingredients;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RecipeIngredient> recipeIngredients;
 }
