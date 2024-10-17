@@ -27,7 +27,7 @@ public class RecipeService {
     public Page<RecipeDTO> search(Pageable pageable, String search) throws ApiException {
         try {
             return this.recipeRepository.searchLight(pageable, search)
-                    .map(recipeMapper::toDTO); // Conversion en DTO sans ingrédients
+                    .map(recipeMapper::toDTO);
         } catch (Exception e) {
             throw new ApiException(e, ErrorEnum.E500);
         }
