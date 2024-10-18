@@ -15,14 +15,16 @@ public class RecipePart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recipe_part_id_gen")
     @SequenceGenerator(name = "recipe_part_id_gen", sequenceName = "recipe_part_seq", allocationSize = 1)
+    @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "label", nullable = false)
     private String label;
 
     @ManyToOne
-    @JoinColumn(name = "id_recipe", nullable = false)
+    @JoinColumn(name = "id_recipe", nullable = false)  // Assurez-vous que cette colonne existe dans votre base de données
     private Recipe recipe;
 
-    @OneToMany(mappedBy = "recipePart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipePart", cascade = CascadeType.ALL)
     private Set<RecipePartIngredient> recipePartIngredients = new LinkedHashSet<>();
 }
