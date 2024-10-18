@@ -12,7 +12,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
             FROM Ingredient i
                 WHERE (
                     :search is null
-                    OR upper(i.label) LIKE upper(CONCAT('%', :search ,'%') )
+                    OR upper(i.label) LIKE '%' || upper(:search) || '%'
                 )
                 ORDER BY i.label DESC
             """)

@@ -23,5 +23,4 @@ public class RecipeType {
 
     @OneToMany(mappedBy = "recipeType")
     private Set<Recipe> recipes = new LinkedHashSet<>();
-
 }

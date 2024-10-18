@@ -22,7 +22,4 @@ public class Ingredient {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_quantity_type")
     private QuantityType quantityType;
-
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<RecipeIngredient> recipeIngredients;
 }

@@ -4,7 +4,6 @@ import com.leacooking.LeaCooking.api.config.error.ErrorEnum;
 import com.leacooking.LeaCooking.api.dto.ingredient.IngredientDTO;
 import com.leacooking.LeaCooking.api.exception.ApiException;
 import com.leacooking.LeaCooking.api.mapper.IngredientMapper;
-import com.leacooking.LeaCooking.api.repository.RecipeIngredientRepository;
 import com.leacooking.LeaCooking.api.repository.IngredientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class IngredientService {
-    private final RecipeIngredientRepository recipeIngredientRepository;
     private final IngredientRepository ingredientRepository;
     private final IngredientMapper ingredientMapper;
 
@@ -26,17 +24,6 @@ public class IngredientService {
         try {
             return ingredientRepository.searchLight(pageable, search)
                     .map(ingredientMapper::toDTO);
-        } catch (Exception e) {
-            throw new ApiException(e, ErrorEnum.E500);
-        }
-    }
-
-    @Transactional(readOnly = true)
-    public List<IngredientDTO> getIngredientsByRecipeId(Long recipeId) throws ApiException {
-        try {
-            return recipeIngredientRepository.findByRecipeId(recipeId).stream()
-                    .map(ingredientMapper::toDTO) // Utilise le mapping de RecipeIngredient vers IngredientDTO
-                    .toList();
         } catch (Exception e) {
             throw new ApiException(e, ErrorEnum.E500);
         }
