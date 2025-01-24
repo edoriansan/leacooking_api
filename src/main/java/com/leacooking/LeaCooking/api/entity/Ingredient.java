@@ -1,8 +1,12 @@
 package com.leacooking.LeaCooking.api.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -16,10 +20,16 @@ public class Ingredient {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Size(max = 255)
+    @NotNull
     @Column(name = "label", nullable = false)
     private String label;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_quantity_type")
     private QuantityType quantityType;
+
+    @OneToMany(mappedBy = "ingredient")
+    private Set<RecipePartIngredient> recipePartIngredients = new LinkedHashSet<>();
+
 }

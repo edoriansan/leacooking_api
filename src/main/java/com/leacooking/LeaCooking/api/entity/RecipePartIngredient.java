@@ -24,8 +24,4 @@ public class RecipePartIngredient {
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
-
-    @ManyToOne
-    @JoinColumn(name = "id_quantity_type", nullable = false)
-    private QuantityType quantityType;
 }
