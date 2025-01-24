@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,8 +25,8 @@ public class RecipeController {
         return ResponseEntity.ok(this.recipeService.search(pageable, search));
     }
 
-    // Endpoint pour récupérer une recette par ID
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<RecipeDTO> getRecipeById(@PathVariable Long id) throws ApiException {
         RecipeDTO recipeDTO = recipeService.getRecipeWithIngredients(id);
         return ResponseEntity.ok(recipeDTO);

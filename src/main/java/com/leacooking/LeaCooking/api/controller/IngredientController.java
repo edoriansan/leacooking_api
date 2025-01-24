@@ -9,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/ingredient/")
@@ -25,10 +23,5 @@ public class IngredientController {
     ) throws ApiException {
         return ResponseEntity.ok(this.ingredientService.search(pageable, search));
     }
-
-//    @GetMapping("recipe/{recipeId}")
-//    public ResponseEntity<List<IngredientDTO>> getAllIngredientsFromRecipe(@PathVariable("recipeId") Long recipeId) throws ApiException {
-//        return ResponseEntity.ok(this.ingredientService.getAllIngredientsByRecipe(recipeId));
-//    }
 }
 
