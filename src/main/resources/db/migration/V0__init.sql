@@ -46,8 +46,7 @@ create table "recipe_part_ingredient" (
                                           id bigint default nextval('recipe_part_ingredient_seq') primary key,
                                           id_recipe_part BIGINT REFERENCES recipe_part ON DELETE CASCADE,
                                           id_ingredient BIGINT REFERENCES ingredient,
-                                          quantity INT NOT NULL,
-                                          id_quantity_type BIGINT REFERENCES quantity_type
+                                          quantity INT NOT NULL
 );
 
 -- Indexes pour améliorer la performance des jointures et recherches

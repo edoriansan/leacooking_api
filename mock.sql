@@ -25,8 +25,8 @@ INSERT INTO recipe_part (label, id_recipe) VALUES
 -- Insertion des ingrédients pour les parties de la recette
 INSERT INTO recipe_part_ingredient (id_recipe_part, id_ingredient, quantity)
 VALUES
-    (1, 1, 500),  -- 500g de farine pour la pâte
-    (1, 2, 300),  -- 300ml d'eau pour la pâte
-    (1, 5, 1),    -- 1 sachet de levure pour la pâte
-    (2, 3, 200),  -- 200g de tomates pour la garniture
-    (2, 4, 100);  -- 100g de mozzarella pour la garniture
+    (1, 1, 500),
+    (1, 2, 300),
+    (1, 5, 1),
+    (2, 3, 2),
+    (2, 4, 100);
