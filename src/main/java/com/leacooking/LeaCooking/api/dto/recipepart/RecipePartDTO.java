@@ -4,7 +4,6 @@ import com.leacooking.LeaCooking.api.dto.recipepartingredient.RecipePartIngredie
 import lombok.Data;
 
 import java.io.Serial;
-import java.util.List;
 import java.util.Set;
 
 @Data

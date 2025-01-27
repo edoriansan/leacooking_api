@@ -2,7 +2,6 @@ package com.leacooking.LeaCooking.api.service;
 
 import com.leacooking.LeaCooking.api.config.error.ErrorEnum;
 import com.leacooking.LeaCooking.api.dto.recipe.RecipeDTO;
-import com.leacooking.LeaCooking.api.dto.recipepart.RecipePartDTO;
 import com.leacooking.LeaCooking.api.entity.Recipe;
 import com.leacooking.LeaCooking.api.exception.ApiException;
 import com.leacooking.LeaCooking.api.mapper.RecipeMapper;
