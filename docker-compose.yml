@@ -38,4 +38,3 @@ volumes:
   postgres-dump:
   postgres-archive:
   pgadmin-data:
-  esdata1:
