@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class RecipePartDTO {
@@ -12,6 +13,7 @@ public class RecipePartDTO {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String label;
-    private List<RecipePartIngredientDTO> ingredients;  // Liste d'ingrédients
+    private String recipePartTitle;
+    private String process;
+    private Set<RecipePartIngredientDTO> ingredients;
 }

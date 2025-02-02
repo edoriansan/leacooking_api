@@ -28,7 +28,6 @@ create table "ingredient" (
 create table "recipe" (
                           id bigint default nextval('recipe_seq') primary key,
                           title VARCHAR(255) NOT NULL,
-                          process VARCHAR(255) NOT NULL,
                           persons INT,
                           image_url VARCHAR(255),
                           id_recipe_type BIGINT REFERENCES recipe_type
@@ -37,7 +36,8 @@ create table "recipe" (
 -- Création de la table recipe_part
 create table "recipe_part" (
                                id bigint default nextval('recipe_part_seq') primary key,
-                               label VARCHAR(255) NOT NULL,
+                               recipe_part_title VARCHAR(255),
+                               process VARCHAR(255) NOT NULL,
                                id_recipe BIGINT REFERENCES recipe ON DELETE CASCADE
 );
 
