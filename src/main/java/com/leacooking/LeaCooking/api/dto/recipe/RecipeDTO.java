@@ -14,7 +14,6 @@ public class RecipeDTO {
 
     private long id;
     private String title;
-    private String process;
     private long persons;
     private String imageUrl;
     private String recipeType;
