@@ -25,10 +25,5 @@ public class IngredientController {
     ) throws ApiException {
         return ResponseEntity.ok(this.ingredientService.search(pageable, search));
     }
-
-//    @GetMapping("recipe/{recipeId}")
-//    public ResponseEntity<List<IngredientDTO>> getAllIngredientsFromRecipe(@PathVariable("recipeId") Long recipeId) throws ApiException {
-//        return ResponseEntity.ok(this.ingredientService.getAllIngredientsByRecipe(recipeId));
-//    }
 }
 
