@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 
 @Validated
-@ConfigurationProperties(prefix = "application.flyway")
+@ConfigurationProperties(prefix = "flyway")
 @Getter
 @Setter
 public class FlywayProperty implements Serializable {
