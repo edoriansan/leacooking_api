@@ -21,9 +21,6 @@ public class Recipe {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "process", nullable = false)
-    private String process;
-
     @Column(name = "persons", nullable = false)
     private Integer persons;
 

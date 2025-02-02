@@ -18,11 +18,14 @@ public class RecipePart {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "label", nullable = false)
-    private String label;
+    @Column(name = "recipePartTitle")
+    private String recipePartTitle;
+
+    @Column(name = "process", nullable = false)
+    private String process;
 
     @ManyToOne
-    @JoinColumn(name = "id_recipe", nullable = false)  // Assurez-vous que cette colonne existe dans votre base de données
+    @JoinColumn(name = "id_recipe", nullable = false)
     private Recipe recipe;
 
     @OneToMany(mappedBy = "recipePart", cascade = CascadeType.ALL)

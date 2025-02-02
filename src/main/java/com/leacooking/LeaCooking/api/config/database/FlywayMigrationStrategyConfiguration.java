@@ -14,7 +14,6 @@ public class FlywayMigrationStrategyConfiguration implements FlywayMigrationStra
 
     @Override
     public void migrate(Flyway flyway) {
-
         if (flywayProperty.getEnabled() != null && flywayProperty.getEnabled()) {
             if (flywayProperty.getRepair() != null && flywayProperty.getRepair()) {
                 flyway.repair();
