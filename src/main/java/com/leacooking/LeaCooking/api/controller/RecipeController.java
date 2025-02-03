@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/recipe/")
+@RequestMapping("/api/recipe")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -24,10 +24,8 @@ public class RecipeController {
         return ResponseEntity.ok(this.recipeService.search(pageable, search));
     }
 
-    // Endpoint pour récupérer une recette par ID
     @GetMapping("/{id}")
-    public ResponseEntity<RecipeDTO> getRecipeById(@PathVariable Long id) throws ApiException {
-        RecipeDTO recipeDTO = recipeService.getRecipeWithIngredients(id);
-        return ResponseEntity.ok(recipeDTO);
+    public ResponseEntity<RecipeDTO> search(@PathVariable Long id) throws ApiException {
+        return ResponseEntity.ok(this.recipeService.getFullRecipe(id));
     }
 }

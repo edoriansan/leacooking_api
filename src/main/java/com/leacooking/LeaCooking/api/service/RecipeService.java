@@ -30,11 +30,10 @@ public class RecipeService {
     }
 
     @Transactional(readOnly = true)
-    public RecipeDTO getRecipeWithIngredients(Long recipeId) throws ApiException {
+    public RecipeDTO getFullRecipe(Long recipeId) throws ApiException {
         try {
-            return recipeRepository.findById(recipeId)
-                    .map(recipeMapper::toDTO)
-                    .orElseThrow(() -> new ApiException(ErrorEnum.E404));
+            Recipe recipe = recipeRepository.findRecipePartsAndIngredients(recipeId);
+            return recipeMapper.toDTO(recipe);
         } catch (Exception e) {
             throw new ApiException(e, ErrorEnum.E500);
         }
