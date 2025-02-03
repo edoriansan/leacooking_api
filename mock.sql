@@ -13,14 +13,15 @@ INSERT INTO ingredient (label, id_quantity_type) VALUES
                                                      ('Levure', 1);
 
 -- Insertion d'une recette
-INSERT INTO recipe (title, process, persons, image_url, id_recipe_type)
+INSERT INTO recipe (title, persons, image_url, id_recipe_type)
 VALUES
-    ('Pizza Margherita', 'Préparer la pâte, ajouter la garniture, et cuire.', 4, 'http://example.com/pizza.jpg', 1);
+    ('Pizza Margherita', 4, 'http://example.com/pizza.jpg', 1);
 
 -- Insertion des parties de la recette "Pizza Margherita"
-INSERT INTO recipe_part (label, id_recipe) VALUES
-                                               ('Pâte', 1),
-                                               ('Garniture', 1);
+INSERT INTO recipe_part (recipe_part_title, process, id_recipe) VALUES
+                                               ('Pâte', 'Préparer la pâte', 1),
+                                               ('Garniture', 'Garnir la pâte', 1),
+                                               ('Cuisson', 'Cuire la pizza', 1);
 
 -- Insertion des ingrédients pour les parties de la recette
 INSERT INTO recipe_part_ingredient (id_recipe_part, id_ingredient, quantity)
