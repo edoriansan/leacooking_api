@@ -18,4 +18,15 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             """)
     Page<Recipe> searchLight(Pageable pageable, String search);
 
+    @Query("""
+        SELECT r
+        FROM Recipe r
+        LEFT JOIN FETCH r.recipeParts rp
+        LEFT JOIN FETCH rp.recipePartIngredients rpi
+        LEFT JOIN FETCH rpi.ingredient i
+        LEFT JOIN FETCH i.quantityType q
+        WHERE r.id = :idRecipe
+        ORDER BY rp.recipePartTitle DESC
+    """)
+    Recipe findRecipePartsAndIngredients(Long idRecipe);
 }
