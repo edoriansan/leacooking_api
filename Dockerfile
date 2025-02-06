@@ -1,4 +1,6 @@
-FROM openjdk:21-jdk
+FROM openjdk:21-jdk-slim
+
+WORKDIR /app
 
 COPY target/LeaCooking-0.0.1-SNAPSHOT.jar /app/LeaCooking-0.0.1-SNAPSHOT.jar
 
