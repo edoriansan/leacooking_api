@@ -1,7 +1,5 @@
 package com.leacooking.LeaCooking.api.config.mapper;
 
-import com.leacooking.LeaCooking.api.mapper.UtilsMapper;
-import com.leacooking.LeaCooking.api.service.utils.EntityReferenceService;
 import org.mapstruct.*;
 
 @MapperConfig(
@@ -13,8 +11,7 @@ import org.mapstruct.*;
         nullValueIterableMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
         nullValueMapMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT,
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL,
-        injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-        uses = {UtilsMapper.class, EntityReferenceService.class}
+        injectionStrategy = InjectionStrategy.CONSTRUCTOR
 )
 public class MapstructConfig {
 }

@@ -17,6 +17,6 @@ public class RecipeDTO {
     private String title;
     private long persons;
     private String imageUrl;
-    private String recipeType;
+    private String recipeSubcategory;
     private Set<RecipePartDTO> recipeParts;
 }
