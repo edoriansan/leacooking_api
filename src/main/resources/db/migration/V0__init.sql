@@ -1,14 +1,22 @@
-create sequence recipe_type_seq;
+create sequence recipe_category_seq;
+create sequence recipe_subcategory_seq;
 create sequence ingredient_seq;
 create sequence quantity_type_seq;
 create sequence recipe_part_seq;
 create sequence recipe_seq;
 create sequence recipe_part_ingredient_seq;
 
--- Création de la table recipe_type
-create table "recipe_type" (
-                               id bigint default nextval('recipe_type_seq') primary key,
-                               label VARCHAR(255) NOT NULL
+-- Création de la table category
+create table "recipe_category" (
+                                      id bigint default nextval('recipe_category_seq') primary key,
+                                      label VARCHAR(255) NOT NULL
+);
+
+-- Création de la table recipe_subcategory
+create table "recipe_subcategory" (
+                               id bigint default nextval('recipe_subcategory_seq') primary key,
+                               label VARCHAR(255) NOT NULL,
+                               id_recipe_category BIGINT REFERENCES recipe_category
 );
 
 -- Création de la table quantity_type
@@ -30,7 +38,7 @@ create table "recipe" (
                           title VARCHAR(255) NOT NULL,
                           persons INT,
                           image_url VARCHAR(255),
-                          id_recipe_type BIGINT REFERENCES recipe_type
+                          id_recipe_subcategory BIGINT REFERENCES recipe_subcategory
 );
 
 -- Création de la table recipe_part
@@ -50,7 +58,8 @@ create table "recipe_part_ingredient" (
 );
 
 -- Indexes pour améliorer la performance des jointures et recherches
-create index index_recipe__recipe_type on recipe (id_recipe_type);
+create index index_recipe_category__recipe_subcategory on recipe_subcategory (id_recipe_category);
+create index index_recipe__recipe_subcategory on recipe (id_recipe_subcategory);
 create index index_ingredient__quantity_type on ingredient (id_quantity_type);
 
 create index index_recipe_part__recipe on recipe_part (id_recipe);

@@ -1,14 +1,11 @@
 package com.leacooking.LeaCooking.api.dto.recipe;
 
 import com.leacooking.LeaCooking.api.dto.recipepart.RecipePartDTO;
-import com.leacooking.LeaCooking.api.dto.recipepartingredient.RecipePartIngredientDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import java.io.Serial;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 public class RecipeDTO {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -17,6 +14,6 @@ public class RecipeDTO {
     private String title;
     private long persons;
     private String imageUrl;
-    private String recipeType;
+    private String recipeSubcategory;
     private Set<RecipePartDTO> recipeParts;
 }
