@@ -24,4 +24,3 @@ public abstract class UtilsMapper {
         return Set.of(entity);
     }
 }
-

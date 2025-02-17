@@ -28,8 +28,8 @@ public class Recipe {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "id_recipe_type", nullable = false)
-    private RecipeType recipeType;
+    @JoinColumn(name = "id_recipe_subcategory", nullable = false)
+    private RecipeSubcategory recipeSubcategory;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<RecipePart> recipeParts = new LinkedHashSet<>();

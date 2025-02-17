@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Mapper(config = MapstructConfig.class, uses = { RecipePartMapper.class, RecipePartIngredientMapper.class })
 public interface RecipeMapper {
-    @Mapping(source = "recipeType.label", target = "recipeType")
+    @Mapping(source = "recipeSubcategory.label", target = "recipeSubcategory")
     RecipeDTO toDTO(Recipe recipe);
 
     Set<RecipeDTO> toDTO(Set<Recipe> recipes);
