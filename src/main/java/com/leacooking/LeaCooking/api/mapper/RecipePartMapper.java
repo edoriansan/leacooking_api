@@ -8,6 +8,9 @@ import org.mapstruct.Mapping;
 
 @Mapper(config = MapstructConfig.class, uses = {RecipePartIngredientMapper.class})
 public interface RecipePartMapper {
-    @Mapping(source = "recipePartIngredients", target = "ingredients")
+    @Mapping(source = "recipe.id", target = "recipeId")
     RecipePartDTO toDTO(RecipePart recipePart);
+
+    @Mapping(source = "recipeId", target = "recipe.id")
+    RecipePart toEntity(RecipePartDTO recipePartDTO);
 }

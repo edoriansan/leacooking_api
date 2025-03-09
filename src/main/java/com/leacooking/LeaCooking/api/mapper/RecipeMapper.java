@@ -6,12 +6,11 @@ import com.leacooking.LeaCooking.api.entity.Recipe;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.Set;
-
 @Mapper(config = MapstructConfig.class, uses = { RecipePartMapper.class, RecipePartIngredientMapper.class })
 public interface RecipeMapper {
-    @Mapping(source = "recipeSubcategory.label", target = "recipeSubcategory")
+    @Mapping(source = "recipeSubcategory.id", target = "recipeSubcategoryId")
     RecipeDTO toDTO(Recipe recipe);
 
-    Set<RecipeDTO> toDTO(Set<Recipe> recipes);
+    @Mapping(source = "recipeSubcategoryId", target = "recipeSubcategory.id")
+    Recipe toEntity(RecipeDTO recipeDTO);
 }
