@@ -1,9 +1,9 @@
 package com.leacooking.LeaCooking.api.repository;
 
-import com.leacooking.LeaCooking.api.entity.Recipe;
+import com.leacooking.LeaCooking.api.entity.QuantityType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+public interface QuantityTypeRepository extends JpaRepository<QuantityType, Long> {
 }

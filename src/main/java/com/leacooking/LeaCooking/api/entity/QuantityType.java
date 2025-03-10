@@ -3,7 +3,6 @@ package com.leacooking.LeaCooking.api.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,5 +22,4 @@ public class QuantityType {
 
     @OneToMany(mappedBy = "quantityType")
     private Set<Ingredient> ingredients = new LinkedHashSet<>();
-
 }
