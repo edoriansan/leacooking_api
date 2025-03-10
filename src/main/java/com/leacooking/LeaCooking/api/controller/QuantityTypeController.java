@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/quantity-types/")
+@RequestMapping("/api/quantity-type/")
 public class QuantityTypeController {
 
     private final QuantityTypeService quantityTypeService;

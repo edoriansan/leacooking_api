@@ -14,7 +14,7 @@ public class RecipeDTO implements Serializable {
     private Long id;
     private String title;
     private Integer persons;
-    private String imageUrl;
+    private String recipeImg;
     private Long recipeSubcategoryId;
     private Set<RecipePartDTO> recipeParts;
 }

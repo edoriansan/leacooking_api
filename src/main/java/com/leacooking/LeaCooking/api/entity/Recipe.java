@@ -24,8 +24,8 @@ public class Recipe {
     @Column(name = "persons", nullable = false)
     private Integer persons;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "img", nullable = false)
+    private String recipeImg;
 
     @ManyToOne
     @JoinColumn(name = "id_recipe_subcategory", nullable = false)

@@ -19,7 +19,10 @@ public class RecipeCategory {
     private Long id;
 
     @Column(name = "label", nullable = false)
-    private String label;
+    private String recipeCategoryLabel;
+
+    @Column(name = "img", nullable = false)
+    private String recipeCategoryImg;
 
     @OneToMany(mappedBy = "recipeCategory")
     private Set<RecipeSubcategory> recipeSubcategories = new LinkedHashSet<>();

@@ -18,11 +18,11 @@ public class RecipePart {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "recipePartTitle")
+    @Column(name = "recipe_part_title")
     private String recipePartTitle;
 
-    @Column(name = "process", nullable = false)
-    private String process;
+    @Column(name = "recipe_part_process", nullable = false)
+    private String recipePartProcess;
 
     @ManyToOne
     @JoinColumn(name = "id_recipe", nullable = false)

@@ -13,7 +13,7 @@ public class RecipePartDTO implements Serializable {
 
     private Long id;
     private String recipePartTitle;
-    private String process;
+    private String recipePartProcess;
     private Long recipeId;
     private Set<RecipePartIngredientDTO> recipePartIngredients;
 }

@@ -10,5 +10,6 @@ public class RecipeCategoryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String label;
+    private String recipeCategoryLabel;
+    private String recipeCategoryImg;
 }

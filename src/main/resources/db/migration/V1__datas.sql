@@ -1,33 +1,99 @@
-INSERT INTO recipe_category (label) VALUES ('Salée'), ('Sucrée');
+INSERT INTO recipe_category(label, img) VALUES
+    ('Salé', 'https://img.cuisineaz.com/660x660/2016/07/29/i84653-spaghettis-bolognaise-rapides.jpg'),
+    ('Sucré', 'https://img-3.journaldesfemmes.fr/H0qYPxS9uCGiAxcOYPriAyleulw=/750x500/3e880207483541898952bc7c3491b00b/ccmcms-jdf/39903996.jpg');
 
-INSERT INTO recipe_subcategory (label, id_recipe_category)
-VALUES ('Pizza', 1), ('Viande', 1), ('Poisson', 1), ('Entremet', 2), ('Tarte', 2), ('Confiserie', 2);
+INSERT INTO recipe_subcategory (label, id_recipe_category, img) VALUES
+    ('Végétarienne', (SELECT id FROM recipe_category WHERE label = 'Salé'), 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/EAC02066-4BA3-4CB8-B10E-C47546BD6667/Derivates/8765f961-23ad-46d8-a890-7660084f9e5a.jpg'),
+    ('Pâtes', (SELECT id FROM recipe_category WHERE label = 'Salé'), 'https://www.papillesetpupilles.fr/wp-content/uploads/2012/09/P%C3%A2tes-Copyright-shutterstock.jpg'),
+    ('Soupe', (SELECT id FROM recipe_category WHERE label = 'Salé'), 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/197434B8-D801-429A-9D6A-261ABEB17B30/Derivates/5875cf44-15e7-4299-8abb-234d633b3d5a.jpg'),
+    ('Dessert', (SELECT id FROM recipe_category WHERE label = 'Sucré'), 'https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/fiches-cuisine/tous-les-themes/desserts/45273995-5-fre-FR/Recettes-Desserts.jpg');
 
-INSERT INTO quantity_type (label) VALUES ('Grammes'), ('Litres'), ('Pièces');
+INSERT INTO quantity_type (label) VALUES
+    ('unité'),
+    ('g'),
+    ('kg'),
+    ('ml'),
+    ('L'),
+    ('cuillères à soupe'),
+    ('cuillères à café'),
+    ('pincée'),
+    ('tranches'),
+    ('boîte'),
+    ('brique'),
+    ('sachet'),
+    ('barquette'),
+    ('tiges'),
+    ('branche'),
+    ('filet'),
+    ('cube'),
+    ('verre'),
+    ('poignée'),
+    ('pointe'),
+    ('bol'),
+    ('louche'),
+    ('pot'),
+    ('morceau'),
+    ('ml d’eau'),
+    ('gouttes'),
+    ('feuille'),
+    ('gousse'),
+    ('dose');
 
 INSERT INTO ingredient (label, id_quantity_type) VALUES
-                                                     ('Farine', 1),
-                                                     ('Eau', 2),
-                                                     ('Tomates', 3),
-                                                     ('Mozzarella', 3),
-                                                     ('Levure', 1);
-
--- Insertion d'une recette
-INSERT INTO recipe (title, persons, image_url, id_recipe_subcategory)
-VALUES
-    ('Pizza Margherita', 4, 'http://example.com/pizza.jpg', 1);
-
--- Insertion des parties de la recette "Pizza Margherita"
-INSERT INTO recipe_part (recipe_part_title, process, id_recipe) VALUES
-                                                                    ('Pâte', 'Préparer la pâte', 1),
-                                                                    ('Garniture', 'Garnir la pâte', 1),
-                                                                    ('Cuisson', 'Cuire la pizza', 1);
-
--- Insertion des ingrédients pour les parties de la recette
-INSERT INTO recipe_part_ingredient (id_recipe_part, id_ingredient, quantity)
-VALUES
-    (1, 1, 500),
-    (1, 2, 300),
-    (1, 5, 1),
-    (2, 3, 2),
-    (2, 4, 100);
+    ('Pâte à tarte', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Pesto', (SELECT id FROM quantity_type WHERE label = 'cuillères à soupe')),
+    ('Tomates cerises', (SELECT id FROM quantity_type WHERE label = 'barquette')),
+    ('Courgette', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Herbes de Provence', NULL),
+    ('Riz Arborio', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Oignon', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Bouillon', (SELECT id FROM quantity_type WHERE label = 'ml')),
+    ('Vin blanc', (SELECT id FROM quantity_type WHERE label = 'ml')),
+    ('Parmesan râpé', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Olives vertes', NULL),
+    ('Champignons', NULL),
+    ('Purée de patate douce', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Farine', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Levure chimique', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Œufs', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Yaourt grec', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Saumon fumé', NULL),
+    ('Ciboulette', NULL),
+    ('Citron', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Épinards frais', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Lait', (SELECT id FROM quantity_type WHERE label = 'ml')),
+    ('Pommes de terre', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Comté', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Lentilles vertes', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Ail', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Lait de coco', (SELECT id FROM quantity_type WHERE label = 'brique')),
+    ('Cumin', NULL),
+    ('Garam Masala', NULL),
+    ('Gingembre en poudre', NULL),
+    ('Curry', NULL),
+    ('Concentré de tomates', (SELECT id FROM quantity_type WHERE label = 'cuillères à soupe')),
+    ('Carottes', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Saint-Môret', (SELECT id FROM quantity_type WHERE label = 'boîte')),
+    ('Tomate cœur de bœuf', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Oignon frais', (SELECT id FROM quantity_type WHERE label = 'tiges')),
+    ('Semoule pour polenta', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Cube or', (SELECT id FROM quantity_type WHERE label = 'unité')),
+    ('Gros sel', NULL),
+    ('Pain de campagne', (SELECT id FROM quantity_type WHERE label = 'tranches')),
+    ('Mozzarella', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Huile d’olive', NULL),
+    ('Pois chiches crus', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Menthe', NULL),
+    ('Persil', NULL),
+    ('Graines de sésame', (SELECT id FROM quantity_type WHERE label = 'cuillères à soupe')),
+    ('Épices', NULL),
+    ('Maïs', (SELECT id FROM quantity_type WHERE label = 'boîte')),
+    ('Poudre à poutine', (SELECT id FROM quantity_type WHERE label = 'sachet')),
+    ('Bacon', NULL),
+    ('Paprika', NULL),
+    ('Gruyère râpé', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Feta', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Beurre', (SELECT id FROM quantity_type WHERE label = 'g')),
+    ('Chapelure', NULL),
+    ('Curcuma', NULL),
+    ('Crème liquide', (SELECT id FROM quantity_type WHERE label = 'boîte'))
