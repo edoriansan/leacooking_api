@@ -11,5 +11,4 @@ public class IngredientDTO implements Serializable {
 
     private long id;
     private String label;
-    private long quantityTypeId;
 }
