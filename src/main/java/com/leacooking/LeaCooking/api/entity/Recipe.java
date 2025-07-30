@@ -32,5 +32,5 @@ public class Recipe {
     private RecipeSubcategory recipeSubcategory;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<RecipePart> recipeParts = new LinkedHashSet<>();
+    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
 }

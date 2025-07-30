@@ -25,7 +25,6 @@ public class Ingredient {
     @Column(name = "label", nullable = false)
     private String label;
 
-    @OneToMany(mappedBy = "ingredient")
-    private Set<RecipePartIngredient> recipePartIngredients = new LinkedHashSet<>();
-
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
 }

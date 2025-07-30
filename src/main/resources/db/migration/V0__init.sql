@@ -1,9 +1,8 @@
 create sequence recipe_category_seq;
 create sequence recipe_subcategory_seq;
 create sequence ingredient_seq;
-create sequence recipe_part_seq;
 create sequence recipe_seq;
-create sequence recipe_part_ingredient_seq;
+create sequence recipe_ingredient_seq;
 
 create table "recipe_category" (
                                       id bigint default nextval('recipe_category_seq') primary key,
@@ -31,22 +30,14 @@ create table "recipe" (
                           id_recipe_subcategory BIGINT REFERENCES recipe_subcategory
 );
 
-create table "recipe_part" (
-                               id bigint default nextval('recipe_part_seq') primary key,
-                               recipe_part_title VARCHAR(255),
-                               recipe_part_process VARCHAR(1000) NOT NULL,
-                               id_recipe BIGINT REFERENCES recipe ON DELETE CASCADE
-);
-
-create table "recipe_part_ingredient" (
-                                          id bigint default nextval('recipe_part_ingredient_seq') primary key,
-                                          id_recipe_part BIGINT REFERENCES recipe_part ON DELETE CASCADE,
-                                          id_ingredient BIGINT REFERENCES ingredient,
-                                          quantity VARCHAR(255)
+create table "recipe_ingredient" (
+                          id bigint default nextval('recipe_ingredient_seq') primary key,
+                          id_recipe BIGINT REFERENCES recipe ON DELETE CASCADE,
+                          id_ingredient BIGINT REFERENCES ingredient,
+                          quantity VARCHAR(255)
 );
 
 create index index_recipe_category__recipe_subcategory on recipe_subcategory (id_recipe_category);
 create index index_recipe__recipe_subcategory on recipe (id_recipe_subcategory);
-create index index_recipe_part__recipe on recipe_part (id_recipe);
-create index index_recipe_part_ingredient__recipe_part on recipe_part_ingredient (id_recipe_part);
-create index index_recipe_part_ingredient__ingredient on recipe_part_ingredient (id_ingredient);
+create index index_recipe_ingredient__recipe on recipe_ingredient (id_recipe);
+create index index_recipe_ingredient__ingredient on recipe_ingredient (id_ingredient);

@@ -1,6 +1,6 @@
 package com.leacooking.LeaCooking.api.dto.recipe;
 
-import com.leacooking.LeaCooking.api.dto.recipepart.RecipePartDTO;
+import com.leacooking.LeaCooking.api.dto.recipeingredient.RecipeIngredientDTO;
 import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,5 +16,5 @@ public class RecipeDTO implements Serializable {
     private Integer persons;
     private String recipeImg;
     private Long recipeSubcategoryId;
-    private Set<RecipePartDTO> recipeParts;
+    private Set<RecipeIngredientDTO> recipeIngredients;
 }

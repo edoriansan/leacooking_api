@@ -10,6 +10,6 @@ import org.mapstruct.Mapping;
 public interface IngredientMapper {
     IngredientDTO toDTO(Ingredient ingredient);
 
-    @Mapping(target = "recipePartIngredients", ignore = true)
+    @Mapping(target = "recipeIngredients", ignore = true)
     Ingredient toEntity(IngredientDTO ingredientDTO);
 }
