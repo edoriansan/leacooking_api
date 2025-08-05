@@ -21,8 +21,11 @@ public class Recipe {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "persons", nullable = false)
-    private Integer persons;
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @Column(name = "parts", nullable = false)
+    private Integer parts;
 
     @Column(name = "img", nullable = false)
     private String recipeImg;

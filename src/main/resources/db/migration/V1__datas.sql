@@ -49,30 +49,53 @@ VALUES
     ('Fromage râpé');
 
 -- Insertion des recettes
-INSERT INTO recipe (title, persons, img, id_recipe_subcategory)
+INSERT INTO recipe (title, parts, img, id_recipe_subcategory, description)
 VALUES
-    ('Cake salé lardons & olives', 6, 'cake_sale.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
-    ('Cookies salés', 4, 'cookies_sales.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
-    ('Ktipiti', 4, 'ktipiti.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
-    ('Tarte fine', 2, 'tarte_fine.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Risotto', 2, 'risotto.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Gaufres de patate douce', 4, 'gaufres_patate_douce.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Gaufres de l''espace', 4, 'gaufres_espace.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Pancakes de pomme de terre', 2, 'pancakes_pomme_de_terre.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Dahl', 2, 'dahl.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Carottes pesto', 2, 'carottes_pesto.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Omelette St Moret', 2, 'omelette_st_moret.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Stick de Polenta', 4, 'stick_polenta.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Croques à l''ancienne', 2, 'croques_ancienne.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Falafels', 4, 'falafels.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Galette maïs', 2, 'galette_mais.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Poutine', 2, 'poutine.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Tortilla', 4, 'tortilla.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Galette Quinoa', 2, 'galette_quinoa.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Camembert pané', 2, 'camembert_pane.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Arancini', 4, 'arancini.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Soupe de butternut', 4, 'soupe_butternut.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Maïs Roti', 2, 'mais_roti.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Quiche sans pâte', 4, 'quiche_sans_pate.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Tarte tatin du soleil', 4, 'tarte_tatin_soleil.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
-    ('Crumble légumes', 4, 'crumble_legumes.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien'));
+    (
+        'Cake salé lardons & olives',
+        6,
+        'cake_sale.jpg',
+        (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
+        'Un délicieux cake salé moelleux, garni de lardons, d''olives vertes et de gruyère râpé. Parfait pour un apéritif ou un pique-nique.'
+    ),
+    (
+        'Cookies salés',
+        4,
+        'cookies_sales.jpg',
+        (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
+        'Des petits biscuits salés au fromage râpé et aux épices, croustillants à l’extérieur et fondants à l’intérieur. À servir tièdes pour l''apéritif.'
+    ),
+    (
+        'Ktipiti',
+        4,
+        'ktipiti.jpg',
+        (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
+        'Tartinade grecque onctueuse à base de feta, poivron rôti, yaourt grec, ail et huile d''olive. À déguster avec du pain pita grillé.'
+    );
+
+-- Insertion des ingrédients par recette
+INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Farine'), '200g'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Œufs'), '3'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Lait'), '10cl'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Huile d''olive'), '8cl'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Lardons'), '100g'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Olives vertes'), '60g'),
+                                                                       (1, (SELECT id FROM ingredient WHERE label = 'Gruyère râpé'), '100g');
+
+INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Farine'), '150g'),
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Beurre ramolli'), '100g'),
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Fromage râpé'), '100g'),
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Œuf'), '1'),
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Paprika'), '1 c. à café'),
+                                                                       (2, (SELECT id FROM ingredient WHERE label = 'Sel'), '1 pincée');
+
+INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Feta'), '200g'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Yaourt grec'), '100g'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Poivron rouge'), '1'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Ail'), '1 gousse'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Huile d''olive'), '2 c. à soupe'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Citron vert'), 'Jus d''un demi citron'),
+                                                                       (3, (SELECT id FROM ingredient WHERE label = 'Paprika'), '1 pincée');
