@@ -19,7 +19,6 @@ public class RecipeSubcategoryController {
 
     @GetMapping
     public ResponseEntity<List<RecipeSubcategoryDTO>> getAllSubcategories() throws ApiException {
-        List<RecipeSubcategoryDTO> subcategories = recipeSubcategoryService.getAllSubcategories();
-        return ResponseEntity.ok(subcategories);
+        return ResponseEntity.ok(recipeSubcategoryService.getAllSubcategories());
     }
 }
