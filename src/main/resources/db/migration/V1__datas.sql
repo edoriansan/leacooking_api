@@ -5,12 +5,28 @@ INSERT INTO recipe_category(label, img) VALUES
 
 -- Insertion des sous-catégories
 INSERT INTO recipe_subcategory (label, img, id_recipe_category) VALUES
-    ('Apéritif', 'apero.jpg', (SELECT id FROM recipe_category WHERE label = 'Salé')),
-    ('Végétarien', 'vegetarien.jpg', (SELECT id FROM recipe_category WHERE label = 'Salé'));
+    ('Apéro', 'apero.jpg', 1),
+    ('Végétarien', 'vegetariennes.jpg', 1),
+    ('Pâtes', 'pates.jpg', 1),
+    ('Viande', 'viande.jpg', 1),
+    ('Poisson', 'poisson.jpg', 1),
+    ('Pizza', 'pizza.jpg', 1),
+    ('Sandwich', 'sandwich.jpg', 1),
+    ('Asiatique', 'asiatiques.jpg', 1),
+    ('Bases', 'base_sale.jpg', 1),
+    ('Sauces', 'sauces.jpg', 1),
+    ('Goûters', 'gouters.jpg', 2),
+    ('Anniversaire', 'anniversaire.jpg', 2),
+    ('Cheesecakes', 'cheesecakes.jpg', 2),
+    ('Individuels', 'individuels.jpg', 2),
+    ('Petit déjeuner', 'petit_dejeuner.jpg', 2),
+    ('Confiseries', 'confiseries.jpg', 2),
+    ('Bases', 'bases_sucre.jpg', 2),
+    ('PRO', 'recettes_pro.jpg', 2),
+    ('CAP', 'cap.jpg', 2);
 
 -- Insertion des ingrédients
-INSERT INTO ingredient (label)
-VALUES
+INSERT INTO ingredient (label) VALUES
     ('Échalote'),
     ('Beurre'),
     ('Beurre ramolli'),
@@ -49,29 +65,51 @@ VALUES
     ('Fromage râpé');
 
 -- Insertion des recettes
-INSERT INTO recipe (title, parts, img, id_recipe_subcategory, description)
-VALUES
+INSERT INTO recipe (title, parts, img, id_recipe_subcategory, description) VALUES
     (
         'Cake salé lardons & olives',
         6,
         'cake_sale.jpg',
         (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
-        'Un délicieux cake salé moelleux, garni de lardons, d''olives vertes et de gruyère râpé. Parfait pour un apéritif ou un pique-nique.'
+        'Préchauffer le four à 180°. Découper les olives en 2 et faire cuire les lardons au micro-onde. Dans un saladier, fouetter les œufs, la farine, la levure, le sel et le poivre. Incorporer petit à petit l’huile et le lait préalablement chauffé. Ajouter le gruyère râpé et mélanger. Enfin, incorporer les olives et les lardons. Bien mélanger. Verser le tout dans un moule et faire cuire pendant 40 minutes.'
     ),
     (
         'Cookies salés',
         4,
         'cookies_sales.jpg',
         (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
-        'Des petits biscuits salés au fromage râpé et aux épices, croustillants à l’extérieur et fondants à l’intérieur. À servir tièdes pour l''apéritif.'
+        'Mélanger le beurre et le parmesan. Ajouter la farine, l’huile d’olive, l’œuf et les épices. Pétrir jusqu’à obtenir un mélange homogène. Incorporer les lardons. Former des boules et les faire cuire 15 minutes à 180 degrés.'
     ),
     (
         'Ktipiti',
         4,
         'ktipiti.jpg',
         (SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),
-        'Tartinade grecque onctueuse à base de feta, poivron rôti, yaourt grec, ail et huile d''olive. À déguster avec du pain pita grillé.'
-    );
+        'Faire cuire les poivrons coupés en deux et la gousse d’ail 25 minutes à 200 degrés. Les laisser 20 minutes supplémentaires dans le four éteint pour que la peau se retire facilement. Une fois épluchés et refroidis, les placer dans le blender avec tous les autres ingrédients et mixer. Mettre la préparation au frais au moins 1 heure avant de servir.'
+    ),
+    ('Tarte fine', NULL, NULL, 'tarte_fine.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Risotto', NULL, NULL, 'risotto.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Gaufres de patate douce', NULL, NULL, 'gaufres_de_patate_douce.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Gaufres de l’espace', NULL, NULL, 'gaufres_de_lespace.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Pancakes de pomme de terre', NULL, NULL, 'pancakes_de_pomme_de_terre.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Dahl', NULL, NULL, 'dahl.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Carottes pesto', NULL, NULL, 'carottes_pesto.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Omelette St Moret', NULL, NULL, 'omelette_st_moret.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Stick de Polenta', NULL, NULL, 'stick_de_polenta.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Croques à l’ancienne', NULL, NULL, 'croques_a_lancienne.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Falafels', NULL, NULL, 'falafels.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Galette maïs', NULL, NULL, 'galette_mais.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Poutine', NULL, NULL, 'poutine.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Tortilla', NULL, NULL, 'tortilla.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Galette Quinoa', NULL, NULL, 'galette_quinoa.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Camembert pané', NULL, NULL, 'camembert_pane.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Arancini', NULL, NULL, 'arancini.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Soupe de butternut', NULL, NULL, 'soupe_de_butternut.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Maïs Roti', NULL, NULL, 'mais_roti.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Quiche sans pâte', NULL, NULL, 'quiche_sans_pate.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Tarte tatin du soleil', NULL, NULL, 'tarte_tatin_du_soleil.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Crumble légumes', NULL, NULL, 'crumble_legumes.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Boulettes végétales', NULL, NULL, 'boulettes_vegetales.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Végétarien'));
 
 -- Insertion des ingrédients par recette
 INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
