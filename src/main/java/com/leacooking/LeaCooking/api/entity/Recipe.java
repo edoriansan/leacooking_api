@@ -21,16 +21,19 @@ public class Recipe {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "persons", nullable = false)
-    private Integer persons;
+    @Column(name = "description", nullable = false)
+    private String description;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "parts", nullable = false)
+    private Integer parts;
+
+    @Column(name = "img", nullable = false)
+    private String recipeImg;
 
     @ManyToOne
     @JoinColumn(name = "id_recipe_subcategory", nullable = false)
     private RecipeSubcategory recipeSubcategory;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<RecipePart> recipeParts = new LinkedHashSet<>();
+    private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
 }

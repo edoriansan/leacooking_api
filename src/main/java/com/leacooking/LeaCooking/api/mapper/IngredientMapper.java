@@ -8,9 +8,8 @@ import org.mapstruct.Mapping;
 
 @Mapper(config = MapstructConfig.class)
 public interface IngredientMapper {
-
-    @Mapping(target = "recipePart", ignore = true)
-    @Mapping(target = "quantity", ignore = true)
-    @Mapping(source = "quantityType.label", target = "quantityTypeLabel")
     IngredientDTO toDTO(Ingredient ingredient);
+
+    @Mapping(target = "recipeIngredients", ignore = true)
+    Ingredient toEntity(IngredientDTO ingredientDTO);
 }
