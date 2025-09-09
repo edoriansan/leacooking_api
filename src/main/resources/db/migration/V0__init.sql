@@ -26,8 +26,8 @@ create table "recipe" (
                           id bigint default nextval('recipe_seq') primary key,
                           title VARCHAR(255) NOT NULL,
                           parts INT,
-                          description VARCHAR(255),
-                          img VARCHAR(255) NOT NULL,
+                          description VARCHAR(10000),
+                          img VARCHAR(255),
                           id_recipe_subcategory BIGINT REFERENCES recipe_subcategory
 );
 
