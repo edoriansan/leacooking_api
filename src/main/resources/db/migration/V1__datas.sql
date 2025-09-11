@@ -84,7 +84,22 @@ INSERT INTO ingredient (label) VALUES
     ('Garam masala'),
     ('Gingembre en poudre'),
     ('Curry'),
-    ('Concentré de tomates');
+    ('Concentré de tomates'),
+    ('St Moret'),
+    ('Tomate cœur de bœuf'),
+    ('Oignon frais'),
+    ('Eau'),
+    ('Semoule pour polenta'),
+    ('Cub or'),
+    ('Gros sel'),
+    ('Pain de campagne'),
+    ('Pois chiche cru'),
+    ('Persil'),
+    ('Graine de sésame'),
+    ('Épices au choix'),
+    ('Maïs en boîte'),
+    ('Poudre à poutine'),
+    ('Bacon');
 
 -- Insertion des recettes apéro
 INSERT INTO recipe (title, parts, img, id_recipe_subcategory, description) VALUES
@@ -127,28 +142,33 @@ INSERT INTO recipe(title, parts, description, img, id_recipe_subcategory) VALUES
     ('Gaufres de l’espace', 4, 'Mélanger épinards, farine, levure, lait et œuf. Cuire dans le gaufrier.', NULL, 2),
     ('Pancakes de pomme de terre', NULL, 'Faire bouillir les pommes de terre, réduire en purée. Ajouter farine, former des boules avec un cube de fromage au centre. Cuire comme pancakes.', NULL, 2),
     ('Dahl', 2, 'Faire revenir oignon, ail, carotte et épices. Ajouter lentilles et lait de coco. Mijoter 30 min en rajoutant de l’eau si nécessaire.', NULL, 2),
-    ('Carottes pesto', 2, 'Cuire les carottes à l’eau puis ajouter le pesto. Servir avec du riz.', NULL, 2);
+    ('Carottes pesto', 2, 'Cuire les carottes à l’eau puis ajouter le pesto. Servir avec du riz.', NULL, 2),
+    ('Omelette St Moret', 2, 'Fouetter les œufs et les cuire en omelette. Tartiner de St Moret et ajouter tomate et oignon frais.', NULL, 2),
+    ('Stick de Polenta', 4, 'Faire bouillir l’eau avec le cub or, ajouter la semoule. Refroidir, couper en rectangles et enfourner 2 min à 220°C. Servir avec salade ou ratatouille.', NULL, 2),
+    ('Croques à l’ancienne', 2, 'Tartiner le pain de pesto, ajouter tomate et mozzarella. Cuire à la poêle jusqu’à ce que le pain soit croustillant.', NULL, 2),
+    ('Falafels', 4, 'Mixer pois chiche, ail, oignon, herbes, graines et épices. Former des boules et cuire à la poêle. Servir avec salade ou sauce au yaourt.', NULL, 2),
+    ('Galette maïs', 2, 'Réduire le maïs en purée, ajouter œufs, farine et fromage râpé. Cuire comme pancakes. Servir avec salade.', NULL, 2),
+    ('Poutine', 2, 'Couper les pommes de terre en frites et cuire. Ajouter sauce, mozzarella et bacon.', NULL, 2),
+    ('Tortilla',2,'Couper les pommes de terre et l’oignon en fines tranches. Mettre une bonne dose d’huile d’olive dans une poêle chaude (remplir le fond). Faire revenir les pommes de terre, l’oignon et la gousse d’ail. Une fois cuit, ajouter les œufs préalablement battus. Quand la tortilla se tient, la retourner pour faire cuire l’autre face à l’aide d’une assiette.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Galette Quinoa',2,'Faire cuire le quinoa. Emincer l’échalote et la faire cuire. Mélanger le quinoa, l’échalote, la farine, le parmesan, l’œuf et les épices. Bien fouetter. Former les galettes sur une poêle chaude et huilée. Les faire dorer de chaque coté à feu moyen. Servir avec une salade.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Camembert pané',8,'Couper le camembert en morceaux et les paner. Les faire frire. Servir avec une salade composée.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Arancini',4,'Placer l’oignon émincé dans l’huile d’olive dans une casserole à feu moyen. Ajouter le riz. Dans une autre casserole placer l’eau avec les cubes or. Cuire le riz comme un risotto. Ajouter le parmesan en fin de cuisson. Débarrasser le riz dans un plat et le placer au moins 2h au frais. Former des boules et les garnir. Tremper les arancinis dans un mélange farine + eau puis dans la chapelure. Faire cuire dans l’huile à 170°C pendant 8/10 minutes.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Soupe de butternut',4,'Faire revenir l’échalote avec le beurre. Ajouter le butternut en cube. Recouvrir d’eau et assaisonner. Laisser cuire 30 minutes. Mixer la préparation puis ajouter la crème fraîche. Servir avec des lardons, un œuf mollet et du pain grillé.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien')),
+    ('Maïs rôti',2,'Préparer la marinade. Déposer les épis de maïs sur une plaque allant au four. Les badigeonner de la marinade. Enfourner à 180 degrés pendant 20 minutes.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Végétarien'));
 
--- Tarte fine
 INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Pâte à tarte'), '1 pâte'),
     ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Pesto'), '3 cuillères à soupe'),
     ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Tomates cerises'), '1 barquette'),
     ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Courgette'), '1 grosse'),
-    ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Herbes de Provence'), 'QS');
-
--- Risotto
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Tarte fine'), (SELECT id FROM ingredient WHERE label='Herbes de Provence'), 'QS'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='Riz Arborio'), '200g'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='Oignon'), '1'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='Bouillon'), '1L'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='vin blanc'), '10cL'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='parmesan râpé'), '50g'),
     ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='olives vertes'), 'QS'),
-    ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='champignons'), 'QS');
-
--- Gaufres de patate douce
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Risotto'), (SELECT id FROM ingredient WHERE label='champignons'), 'QS'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='purée de patate douce'), '420g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='farine'), '100g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='levure chimique'), '6g'),
@@ -157,24 +177,15 @@ INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='tranches de saumon fumé'), 'QS'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='œufs'), '1 par personne'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='ciboulette'), 'QS'),
-    ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='citron'), '1');
-
--- Gaufres de l’espace
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='citron'), '1'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='épinards frais'), '200g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='farine'), '200g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='levure chimique'), '1 sachet'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='lait'), '200ml'),
-    ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='œufs'), '1');
-
--- Pancakes de pomme de terre
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='œufs'), '1'),
     ((SELECT id FROM recipe WHERE title='Pancakes de pomme de terre'), (SELECT id FROM ingredient WHERE label='pommes de terre'), '4 moyennes'),
     ((SELECT id FROM recipe WHERE title='Pancakes de pomme de terre'), (SELECT id FROM ingredient WHERE label='farine'), '3 cuillères à soupe'),
-    ((SELECT id FROM recipe WHERE title='Pancakes de pomme de terre'), (SELECT id FROM ingredient WHERE label='comté'), '1 morceau');
-
--- Dahl
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Pancakes de pomme de terre'), (SELECT id FROM ingredient WHERE label='comté'), '1 morceau'),
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='lentilles vertes'), '100g'),
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Carottes'), '1 ou 2'),
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Oignon'), '1'),
@@ -184,9 +195,77 @@ INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Garam masala'), '1 cuillère à café'),
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Gingembre en poudre'), '½ cuillère à café'),
     ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Curry'), '1 cuillère à café'),
-    ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Concentré de tomates'), '1 cuillère à soupe');
-
--- Carottes pesto
-INSERT INTO recipe_ingredient(id_recipe, id_ingredient, quantity) VALUES
+    ((SELECT id FROM recipe WHERE title='Dahl'), (SELECT id FROM ingredient WHERE label='Concentré de tomates'), '1 cuillère à soupe'),
     ((SELECT id FROM recipe WHERE title='Carottes pesto'), (SELECT id FROM ingredient WHERE label='Carottes'), '5 ou 6'),
-    ((SELECT id FROM recipe WHERE title='Carottes pesto'), (SELECT id FROM ingredient WHERE label='Pesto'), '½ pot');
+    ((SELECT id FROM recipe WHERE title='Carottes pesto'), (SELECT id FROM ingredient WHERE label='Pesto'), '½ pot'),
+    ((SELECT id FROM recipe WHERE title='Omelette St Moret'), (SELECT id FROM ingredient WHERE label='Œufs'), '5 ou 6'),
+    ((SELECT id FROM recipe WHERE title='Omelette St Moret'), (SELECT id FROM ingredient WHERE label='St Moret'), '1 boîte'),
+    ((SELECT id FROM recipe WHERE title='Omelette St Moret'), (SELECT id FROM ingredient WHERE label='Tomate cœur de bœuf'), '1'),
+    ((SELECT id FROM recipe WHERE title='Omelette St Moret'), (SELECT id FROM ingredient WHERE label='Oignon frais'), '2 tiges'),
+    ((SELECT id FROM recipe WHERE title='Stick de Polenta'), (SELECT id FROM ingredient WHERE label='Eau'), '600 mL'),
+    ((SELECT id FROM recipe WHERE title='Stick de Polenta'), (SELECT id FROM ingredient WHERE label='Semoule pour polenta'), '250g'),
+    ((SELECT id FROM recipe WHERE title='Stick de Polenta'), (SELECT id FROM ingredient WHERE label='Cub or'), '1'),
+    ((SELECT id FROM recipe WHERE title='Stick de Polenta'), (SELECT id FROM ingredient WHERE label='Gros sel'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Croques à l’ancienne'), (SELECT id FROM ingredient WHERE label='Pain de campagne'), '8 tranches'),
+    ((SELECT id FROM recipe WHERE title='Croques à l’ancienne'), (SELECT id FROM ingredient WHERE label='Pesto'), '½ pot'),
+    ((SELECT id FROM recipe WHERE title='Croques à l’ancienne'), (SELECT id FROM ingredient WHERE label='Tomate cœur de bœuf'), '1'),
+    ((SELECT id FROM recipe WHERE title='Croques à l’ancienne'), (SELECT id FROM ingredient WHERE label='Mozzarella'), '1'),
+    ((SELECT id FROM recipe WHERE title='Croques à l’ancienne'), (SELECT id FROM ingredient WHERE label='Huile d''olive'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Pois chiche cru'), '250g'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Ail'), '2 gousses'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Oignon'), '½'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Feuilles de menthe'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Persil'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Graine de sésame'), '1 cuillère à soupe'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Épices au choix'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Falafels'), (SELECT id FROM ingredient WHERE label='Farine'), '2 cuillères à soupe'),
+    ((SELECT id FROM recipe WHERE title='Galette maïs'), (SELECT id FROM ingredient WHERE label='Maïs en boîte'), '1 grosse boîte'),
+    ((SELECT id FROM recipe WHERE title='Galette maïs'), (SELECT id FROM ingredient WHERE label='Œufs'), '2'),
+    ((SELECT id FROM recipe WHERE title='Galette maïs'), (SELECT id FROM ingredient WHERE label='Farine'), '100g'),
+    ((SELECT id FROM recipe WHERE title='Galette maïs'), (SELECT id FROM ingredient WHERE label='Fromage râpé'), '2 poignées'),
+    ((SELECT id FROM recipe WHERE title='Poutine'), (SELECT id FROM ingredient WHERE label='Pommes de terre'), '800g'),
+    ((SELECT id FROM recipe WHERE title='Poutine'), (SELECT id FROM ingredient WHERE label='Poudre à poutine'), '1 sachet'),
+    ((SELECT id FROM recipe WHERE title='Poutine'), (SELECT id FROM ingredient WHERE label='Mozzarella'), '1'),
+    ((SELECT id FROM recipe WHERE title='Poutine'), (SELECT id FROM ingredient WHERE label='Bacon'), 'Quelques tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Œufs'), '4 ou 5'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Pommes de terre'), '3 grosses'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Oignon'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Ail'), '1 gousse'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Huile d’olive'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Sel'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Tortilla'), (SELECT id FROM ingredient WHERE label = 'Poivre'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Quinoa'), '75g'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Œuf'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Farine'), '1 cuillère à soupe'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Parmesan râpé'), '50g'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Échalote'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Paprika'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Galette Quinoa'), (SELECT id FROM ingredient WHERE label = 'Ciboulette'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Camembert pané'), (SELECT id FROM ingredient WHERE label = 'Camembert'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Camembert pané'), (SELECT id FROM ingredient WHERE label = 'Œuf'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Camembert pané'), (SELECT id FROM ingredient WHERE label = 'Farine'), '2 cuillères à soupe'),
+    ((SELECT id FROM recipe WHERE title = 'Camembert pané'), (SELECT id FROM ingredient WHERE label = 'Chapelure'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Camembert pané'), (SELECT id FROM ingredient WHERE label = 'Huile de friture'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Riz arborio'), '300g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Eau'), '900g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Cube or'), '2'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Parmesan'), '70g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Oignon'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Huile d’olive'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Curcuma'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Mozzarella'), '100g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Petits pois'), '100g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Farine'), '210g'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Eau'), '300g (panure)'),
+    ((SELECT id FROM recipe WHERE title = 'Arancini'), (SELECT id FROM ingredient WHERE label = 'Chapelure'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Échalote'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Beurre'), '20g'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Butternut'), '1'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Crème liquide'), '1 boite'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Lardons'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Œuf'), '1 mollet'),
+    ((SELECT id FROM recipe WHERE title = 'Soupe de butternut'), (SELECT id FROM ingredient WHERE label = 'Pain'), 'QS grillé'),
+    ((SELECT id FROM recipe WHERE title = 'Maïs rôti'), (SELECT id FROM ingredient WHERE label = 'Huile d’olive'), '2 cuillères à soupe'),
+    ((SELECT id FROM recipe WHERE title = 'Maïs rôti'), (SELECT id FROM ingredient WHERE label = 'Paprika'), 'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Maïs rôti'), (SELECT id FROM ingredient WHERE label = 'Miel'), '1 cuillère à soupe'),
+    ((SELECT id FROM recipe WHERE title = 'Maïs rôti'), (SELECT id FROM ingredient WHERE label = 'Maïs'), '2 épis');
