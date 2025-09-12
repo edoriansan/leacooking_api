@@ -119,13 +119,11 @@ INSERT INTO ingredient (label) VALUES
     ('Pulpe de tomate'),
     ('Épices');
 
--- Insertion des recettes apéro
-INSERT INTO recipe (title, parts, img, id_recipe_subcategory, description) VALUES
-    ('Cake salé lardons & olives',6,'cake_sale.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),'Préchauffer le four à 180°. Découper les olives en 2 et faire cuire les lardons au micro-onde. Dans un saladier, fouetter les œufs, la farine, la levure, le sel et le poivre. Incorporer petit à petit l’huile et le lait préalablement chauffé. Ajouter le gruyère râpé et mélanger. Enfin, incorporer les olives et les lardons. Bien mélanger. Verser le tout dans un moule et faire cuire pendant 40 minutes.'),
-    ('Cookies salés',4,'cookies_sales.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),'Mélanger le beurre et le parmesan. Ajouter la farine, l’huile d’olive, l’œuf et les épices. Pétrir jusqu’à obtenir un mélange homogène. Incorporer les lardons. Former des boules et les faire cuire 15 minutes à 180 degrés.'),
-    ('Ktipiti',4,'ktipiti.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif'),'Faire cuire les poivrons coupés en deux et la gousse d’ail 25 minutes à 200 degrés. Les laisser 20 minutes supplémentaires dans le four éteint pour que la peau se retire facilement. Une fois épluchés et refroidis, les placer dans le blender avec tous les autres ingrédients et mixer. Mettre la préparation au frais au moins 1 heure avant de servir.');
-
-INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUES
+-- Insertion des recettes
+INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory, ) VALUES
+    ('Cake salé lardons & olives',6,'Préchauffer le four à 180°. Découper les olives en 2 et faire cuire les lardons au micro-onde. Dans un saladier, fouetter les œufs, la farine, la levure, le sel et le poivre. Incorporer petit à petit l’huile et le lait préalablement chauffé. Ajouter le gruyère râpé et mélanger. Enfin, incorporer les olives et les lardons. Bien mélanger. Verser le tout dans un moule et faire cuire pendant 40 minutes.','cake_sale.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
+    ('Cookies salés',4,'Mélanger le beurre et le parmesan. Ajouter la farine, l’huile d’olive, l’œuf et les épices. Pétrir jusqu’à obtenir un mélange homogène. Incorporer les lardons. Former des boules et les faire cuire 15 minutes à 180 degrés.','cookies_sales.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
+    ('Ktipiti',4,'Faire cuire les poivrons coupés en deux et la gousse d’ail 25 minutes à 200 degrés. Les laisser 20 minutes supplémentaires dans le four éteint pour que la peau se retire facilement. Une fois épluchés et refroidis, les placer dans le blender avec tous les autres ingrédients et mixer. Mettre la préparation au frais au moins 1 heure avant de servir.','ktipiti.jpg',(SELECT id FROM recipe_subcategory WHERE label = 'Apéritif')),
     ('Tarte fine', NULL, 'Couper les tomates cerises en deux et les courgettes en rondelles. Etaler le pesto sur la pâte puis placer les légumes. Parsemer d’herbes de Provence. Enfourner à 180°C pendant 25 minutes.', NULL, 2),
     ('Risotto', 2, 'Faire revenir le riz dans un peu d’huile d’olive jusqu’à ce qu’il soit translucide. Ajouter progressivement le bouillon. Faire revenir les oignons et champignons séparément. Ajouter parmesan, champignons et olives à la fin.', NULL, 2),
     ('Gaufres de patate douce', NULL, 'Mélanger la purée et les œufs battus. Ajouter farine et levure. Cuire dans le gaufrier. Garnir avec yaourt, citron, ciboulette, saumon fumé et œuf mollet.', NULL, 2),
@@ -150,6 +148,7 @@ INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUE
     ('Pâtes à la fêta',2,'Placer les tomates cerises, la fêta et les morceaux de courgettes dans un plat allant au four. Parsemer d’herbes de Provence et arroser d’huile d’olive. Cuire 20 minutes à 200°C. Mélanger avec les pâtes cuites.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Pâtes')),
     ('Pâtes au chorizo',2,'Faire revenir les poivrons dans une poêle. Ajouter la sauce tomate, l’eau, le chorizo et les épices. Mélanger avec les pâtes cuites et servir.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Pâtes'));
 
+-- Insertion des ingrédients par recette
 INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     (1, (SELECT id FROM ingredient WHERE label = 'Farine'), '200g'),
     (1, (SELECT id FROM ingredient WHERE label = 'Œufs'), '3'),
