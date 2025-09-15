@@ -73,7 +73,6 @@ INSERT INTO ingredient (label) VALUES
     ('Tranches de saumon fumé'),
     ('Ciboulette'),
     ('Citron'),
-    ('épinards frais'),
     ('Pommes de terre'),
     ('Comté'),
     ('Lentilles vertes'),
@@ -168,7 +167,16 @@ INSERT INTO ingredient (label) VALUES
     ('Chèvre'),
     ('Cranberries'),
     ('Noix de pécan'),
-    ('Sirop d''érable');
+    ('Sirop d''érable'),
+    ('Fromage à raclette'),
+    ('Cornichon'),
+    ('Jambon de parme'),
+    ('Reblochon'),
+    ('Brie'),
+    ('Lard fumé cuit'),
+    ('Oignon frit'),
+    ('Épinards frais'),
+    ('Sauce tartare');
 
 -- Insertion des recettes
 INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUES
@@ -214,7 +222,9 @@ INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUE
     ('Bûche de saumon',8,'Mélanger le saumon avec du jus de citron et de l’aneth. Mélanger le fromage avec sel et poivre. Dans un moule filmé, alterner saumon fumé, pain de mie, fromage et saumon mariné. Réserver 3h au frais. Décorer d’aneth et de citron.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
     ('Fish & chips',4,'Mélanger maïzena, farine, levure, cumin, sucre, sel, poivre et eau gazeuse. Fariner les filets de poisson, les tremper dans la préparation et les frire quelques minutes. Servir avec frites et sauce tartare.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
     ('Poisson en croûte de chorizo',2,'Mixer le chorizo avec le parmesan. Recouvrir les filets de poisson de la préparation et cuire 30 min à 200°C.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
-    ('Pizza Québécoise',1,'Mettre la crème fraîche en base. Ajouter le fromage, le bacon, les noix de pécan et les cranberries. Arroser de sirop d’érable avant d’enfourner.',NULL,(SELECT id FROM recipe_subcategory WHERE label='Pizza'));
+    ('Pizza Québécoise',1,'Mettre la crème fraîche en base. Ajouter le fromage, le bacon, les noix de pécan et les cranberries. Arroser de sirop d’érable avant d’enfourner.',NULL,(SELECT id FROM recipe_subcategory WHERE label='Pizza')),
+    ('Sandwich Raclette',1,'Sandwich composé de fromage à raclette, cornichons et jambon de parme.','NULL',(SELECT id FROM recipe_subcategory WHERE label = 'Sandwich')),
+    ('Sandwich brie / lard',1,'Sandwich composé de brie ou reblochon, lard fumé cuit, oignon frit, épinards frais et sauce tartare.','NULL',(SELECT id FROM recipe_subcategory WHERE label = 'Sandwich'));
 
 
 -- Insertion des ingrédients par recette
@@ -260,7 +270,7 @@ INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='œufs'), '1 par personne'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='ciboulette'), 'QS'),
     ((SELECT id FROM recipe WHERE title='Gaufres de patate douce'), (SELECT id FROM ingredient WHERE label='citron'), '1'),
-    ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='épinards frais'), '200g'),
+    ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='Épinards frais'), '200g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='farine'), '200g'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='levure chimique'), '1 sachet'),
     ((SELECT id FROM recipe WHERE title='Gaufres de l’espace'), (SELECT id FROM ingredient WHERE label='lait'), '200ml'),
@@ -548,5 +558,13 @@ INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Chèvre'),'QS'),
     ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Cranberries'),'QS'),
     ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Noix de pécan'),'QS'),
-    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Sirop d''érable'),'QS');
-
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Sirop d''érable'),'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich Raclette'),(SELECT id FROM ingredient WHERE label = 'Fromage à raclette'),'3 tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich Raclette'),(SELECT id FROM ingredient WHERE label = 'Cornichon'),'3'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich Raclette'),(SELECT id FROM ingredient WHERE label = 'Jambon de parme'),'2 tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Reblochon'),'3 tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Brie'),'3 tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Lard fumé cuit'),'3 tranches'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Oignon frit'),'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Épinards frais'),'QS'),
+    ((SELECT id FROM recipe WHERE title = 'Sandwich brie / lard'),(SELECT id FROM ingredient WHERE label = 'Sauce tartare'),'QS');
