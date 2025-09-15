@@ -163,8 +163,12 @@ INSERT INTO ingredient (label) VALUES
     ('Fromage frais'),
     ('Aneth'),
     ('Farine de blé'),
-    ('Eau gazeuse');
-
+    ('Eau gazeuse'),
+    ('Crème fraîche'),
+    ('Chèvre'),
+    ('Cranberries'),
+    ('Noix de pécan'),
+    ('Sirop d''érable');
 
 -- Insertion des recettes
 INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUES
@@ -209,7 +213,9 @@ INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUE
     ('Poisson à la provençale',2,'Placer les filets de poisson dans un plat allant au four. Ajouter les olives et la tomate en rondelles. Parsemer d’herbes de Provence, arroser d’huile d’olive et cuire 20 min à 180°C.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
     ('Bûche de saumon',8,'Mélanger le saumon avec du jus de citron et de l’aneth. Mélanger le fromage avec sel et poivre. Dans un moule filmé, alterner saumon fumé, pain de mie, fromage et saumon mariné. Réserver 3h au frais. Décorer d’aneth et de citron.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
     ('Fish & chips',4,'Mélanger maïzena, farine, levure, cumin, sucre, sel, poivre et eau gazeuse. Fariner les filets de poisson, les tremper dans la préparation et les frire quelques minutes. Servir avec frites et sauce tartare.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
-    ('Poisson en croûte de chorizo',2,'Mixer le chorizo avec le parmesan. Recouvrir les filets de poisson de la préparation et cuire 30 min à 200°C.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson'));
+    ('Poisson en croûte de chorizo',2,'Mixer le chorizo avec le parmesan. Recouvrir les filets de poisson de la préparation et cuire 30 min à 200°C.',NULL,(SELECT id FROM recipe_subcategory WHERE label = 'Poisson')),
+    ('Pizza Québécoise',1,'Mettre la crème fraîche en base. Ajouter le fromage, le bacon, les noix de pécan et les cranberries. Arroser de sirop d’érable avant d’enfourner.',NULL,(SELECT id FROM recipe_subcategory WHERE label='Pizza'));
+
 
 -- Insertion des ingrédients par recette
 INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
@@ -535,4 +541,12 @@ INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title = 'Fish & chips'),(SELECT id FROM ingredient WHERE label = 'Filet de poisson blanc'),'4'),
     ((SELECT id FROM recipe WHERE title = 'Poisson en croûte de chorizo'),(SELECT id FROM ingredient WHERE label = 'Filet de poisson blanc'),'2'),
     ((SELECT id FROM recipe WHERE title = 'Poisson en croûte de chorizo'),(SELECT id FROM ingredient WHERE label = 'Chorizo'),'QS'),
-    ((SELECT id FROM recipe WHERE title = 'Poisson en croûte de chorizo'),(SELECT id FROM ingredient WHERE label = 'Parmesan'),'QS');
+    ((SELECT id FROM recipe WHERE title = 'Poisson en croûte de chorizo'),(SELECT id FROM ingredient WHERE label = 'Parmesan'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Crème fraîche'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Bacon'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Mozzarella'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Chèvre'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Cranberries'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Noix de pécan'),'QS'),
+    ((SELECT id FROM recipe WHERE title='Pizza Québécoise'),(SELECT id FROM ingredient WHERE label='Sirop d''érable'),'QS');
+
