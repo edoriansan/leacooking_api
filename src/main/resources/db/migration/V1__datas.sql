@@ -13,7 +13,7 @@ INSERT INTO recipe_subcategory (label, img, id_recipe_category) VALUES
     ('Pizza', 'pizza.jpg', 1),
     ('Sandwich', 'sandwich.jpg', 1),
     ('Asiatique', 'asiatiques.jpg', 1),
-    ('Bases', 'base_sale.jpg', 1),
+    ('Bases salées', 'base_sale.jpg', 1),
     ('Sauces', 'sauces.jpg', 1),
     ('Goûters', 'gouters.jpg', 2),
     ('Anniversaire', 'anniversaire.jpg', 2),
@@ -21,7 +21,7 @@ INSERT INTO recipe_subcategory (label, img, id_recipe_category) VALUES
     ('Individuels', 'individuels.jpg', 2),
     ('Petit déjeuner', 'petit_dejeuner.jpg', 2),
     ('Confiseries', 'confiseries.jpg', 2),
-    ('Bases', 'bases_sucre.jpg', 2),
+    ('Bases sucrées', 'bases_sucre.jpg', 2),
     ('PRO', 'recettes_pro.jpg', 2),
     ('CAP', 'cap.jpg', 2);
 
@@ -200,7 +200,13 @@ INSERT INTO ingredient (label) VALUES
     ('Poitrine de porc'),
     ('Chinese cooking wine'),
     ('Poudre 5 épices'),
-    ('Légumes verts');
+    ('Légumes verts'),
+    ('Concentré de tomate'),
+    ('Pommes de terre violette'),
+    ('Fromage blanc'),
+    ('Beurre mou'),
+    ('Bicarbonate de soude'),
+    ('Semoule extra-fine');
 
 -- Insertion des recettes
 INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUES
@@ -253,9 +259,15 @@ INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUE
     ('Banh Bao', 8, 'Préparer la pâte avec les farines, levures, sucre, eau et huile. Laisser lever, former des disques et garnir de farce (viande hachée, champignons, sauces, carotte, cébette, œuf dur). Déposer sur papier sulfurisé et cuire à la vapeur 15 min.', 'banh-bao.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Asiatique')),
     ('Nouilles sautées', 2, 'Cuire les nouilles et les rincer. Faire revenir les légumes dans l’huile de sésame, ajouter la viande puis les nouilles. Terminer avec les sauces.', 'nouilles-sautees.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Asiatique')),
     ('Udon crémeuses', 2, 'Faire revenir ail, oignon, champignons, poivron et brocolis dans un wok. Ajouter sauces, nouilles Udon cuites et crème. Bien mélanger et servir.', 'udon-cremeuses.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Asiatique')),
-    ('Porc glacé', 2, 'Mariner la poitrine de porc avec sauces, miel, vin chinois et épices. Cuire au four 12 min de chaque côté. Réduire la marinade en sauce et napper le porc.', 'porc-glace.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Asiatique'));
-
-
+    ('Porc glacé', 2, 'Mariner la poitrine de porc avec sauces, miel, vin chinois et épices. Cuire au four 12 min de chaque côté. Réduire la marinade en sauce et napper le porc.', 'porc-glace.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Asiatique')),
+    ('Pâtes fraiches', 2, 'Former une pâte avec farine et œufs. Filmer et réserver entre 30 min et 1h au frais. Former les pâtes souhaitées, les laisser sécher 30 min puis cuire 3 min dans l’eau bouillante.', 'pates-fraiches.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Pâtes fraiches tomate', 2, 'Former une pâte avec farine, œufs et concentré de tomate. Filmer et réserver entre 30 min et 1h au frais. Former les pâtes, sécher 30 min puis cuire 3 min dans l’eau bouillante.', 'pates-fraiches-tomate.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Pâtes fraiches épinards', 2, 'Faire cuire les épinards. Mixer avec l’œuf puis mélanger à la farine. Former les pâtes et cuire à l’eau bouillante.', 'pates-fraiches-epinards.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Gnocchis', 4, 'Cuire les pommes de terre puis les réduire en purée. Mélanger avec farine et jaunes d’œufs. Former des petites boules, les marquer à la fourchette et cuire jusqu’à remontée à la surface.', 'gnocchis.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Pâte à tarte healthy', 1, 'Mélanger farine, fromage blanc, huile d’olive et origan. Filmer au contact et réserver au frais au moins 1h. Utiliser pour tartes fines ou mini tartes.', 'pate-tarte-healthy.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Naans', 4, 'Préparer une pâte avec farine, yaourt, levure, eau et sel. Laisser reposer puis cuire les galettes à la poêle. Variante possible avec garniture (fromage, ail, herbes).', 'naans.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Bretzels', 6, 'Mélanger farine, levure, lait, eau, beurre et sel. Laisser lever 1h30. Former les bretzels, les pocher dans le bicarbonate puis les cuire au four 10 min à 230°C.', 'bretzels.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Kesra', 1, 'Mélanger semoule et huile. Laisser reposer 15 min. Ajouter sel et eau pour obtenir une pâte homogène. Étaler en galette et cuire sur crêpière jusqu’à doré.', 'kesra.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées'));
 
 -- Insertion des ingrédients par recette
 INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
@@ -646,4 +658,36 @@ INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Porc glacé'), (SELECT id FROM ingredient WHERE label='Chinese cooking wine'), '3 càs'),
     ((SELECT id FROM recipe WHERE title='Porc glacé'), (SELECT id FROM ingredient WHERE label='Poudre 5 épices'), '1 càc'),
     ((SELECT id FROM recipe WHERE title='Porc glacé'), (SELECT id FROM ingredient WHERE label='Riz'), 'Accompagnement'),
-    ((SELECT id FROM recipe WHERE title='Porc glacé'), (SELECT id FROM ingredient WHERE label='Légumes verts'), 'Accompagnement');
+    ((SELECT id FROM recipe WHERE title='Porc glacé'), (SELECT id FROM ingredient WHERE label='Légumes verts'), 'Accompagnement'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches'), (SELECT id FROM ingredient WHERE label='Farine'), '200g'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches'), (SELECT id FROM ingredient WHERE label='Œuf'), '2'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches tomate'), (SELECT id FROM ingredient WHERE label='Farine'), '200g'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches tomate'), (SELECT id FROM ingredient WHERE label='Œuf'), '2'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches tomate'), (SELECT id FROM ingredient WHERE label='Concentré de tomate'), '1 à 2 càs'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches épinards'), (SELECT id FROM ingredient WHERE label='Farine'), '200g'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches épinards'), (SELECT id FROM ingredient WHERE label='Épinards frais'), '50g'),
+    ((SELECT id FROM recipe WHERE title='Pâtes fraiches épinards'), (SELECT id FROM ingredient WHERE label='Œuf'), '1'),
+    ((SELECT id FROM recipe WHERE title='Gnocchis'), (SELECT id FROM ingredient WHERE label='Pommes de terre violette'), '1 kg'),
+    ((SELECT id FROM recipe WHERE title='Gnocchis'), (SELECT id FROM ingredient WHERE label='Farine'), '250g'),
+    ((SELECT id FROM recipe WHERE title='Gnocchis'), (SELECT id FROM ingredient WHERE label='Jaune d’œuf'), '2'),
+    ((SELECT id FROM recipe WHERE title='Pâte à tarte healthy'), (SELECT id FROM ingredient WHERE label='Farine'), '220g'),
+    ((SELECT id FROM recipe WHERE title='Pâte à tarte healthy'), (SELECT id FROM ingredient WHERE label='Fromage blanc'), '145g'),
+    ((SELECT id FROM recipe WHERE title='Pâte à tarte healthy'), (SELECT id FROM ingredient WHERE label='Huile d’olive'), '2 càs'),
+    ((SELECT id FROM recipe WHERE title='Pâte à tarte healthy'), (SELECT id FROM ingredient WHERE label='Origan'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Naans'), (SELECT id FROM ingredient WHERE label='Farine de blé'), '500g'),
+    ((SELECT id FROM recipe WHERE title='Naans'), (SELECT id FROM ingredient WHERE label='Levure boulangère'), '1 sachet'),
+    ((SELECT id FROM recipe WHERE title='Naans'), (SELECT id FROM ingredient WHERE label='Eau'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Naans'), (SELECT id FROM ingredient WHERE label='Sel'), '1 càc'),
+    ((SELECT id FROM recipe WHERE title='Naans'), (SELECT id FROM ingredient WHERE label='Yaourt nature'), '150g'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Farine'), '500g'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Lait'), '20 cL'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Eau'), '10 cL'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Beurre mou'), '30g'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Sel'), '10g'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Levure boulangère'), '1 sachet ou ½ cube frais'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Gros sel'), 'QS'),
+    ((SELECT id FROM recipe WHERE title='Bretzels'), (SELECT id FROM ingredient WHERE label='Bicarbonate de soude'), '75g'),
+    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Semoule extra-fine'), '500g'),
+    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Huile de tournesol'), '100g'),
+    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Sel'), '10g'),
+    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Eau'), '200g');
