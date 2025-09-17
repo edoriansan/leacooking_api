@@ -14,7 +14,7 @@ INSERT INTO recipe_subcategory (label, img, id_recipe_category) VALUES
     ('Sandwich', 'sandwich.jpg', 1),
     ('Asiatique', 'asiatiques.jpg', 1),
     ('Bases salées', 'base_sale.jpg', 1),
-    ('Sauces', 'sauces.jpg', 1),
+    ('Condiments', 'condiments.jpg', 1),
     ('Goûters', 'gouters.jpg', 2),
     ('Anniversaire', 'anniversaire.jpg', 2),
     ('Cheesecakes', 'cheesecakes.jpg', 2),
@@ -25,7 +25,6 @@ INSERT INTO recipe_subcategory (label, img, id_recipe_category) VALUES
     ('PRO', 'recettes_pro.jpg', 2),
     ('CAP', 'cap.jpg', 2);
 
--- Insertion des ingrédients
 INSERT INTO ingredient (label) VALUES
     ('Échalote'),
     ('Beurre'),
@@ -216,7 +215,14 @@ INSERT INTO ingredient (label) VALUES
     ('Bicarbonate de soude'),
     ('Petits pois'),
     ('Maïs'),
-    ('Semoule extra-fine');
+    ('Semoule extra-fine'),
+    ('Vinaigre balsamique'),
+    ('Champignons émincés'),
+    ('Ketchup'),
+    ('Sauce Hoisin'),
+    ('Fécule de maïs'),
+    ('Vinaigre blanc'),
+    ('Légumes');
 
 -- Insertion des recettes
 INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUES
@@ -277,7 +283,11 @@ INSERT INTO recipe (title, parts, description, img, id_recipe_subcategory) VALUE
     ('Pâte à tarte healthy', 1, 'Mélanger farine, fromage blanc, huile d’olive et origan. Filmer au contact et réserver au frais au moins 1h. Utiliser pour tartes fines ou mini tartes.', 'pate-tarte-healthy.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
     ('Naans', 4, 'Préparer une pâte avec farine, yaourt, levure, eau et sel. Laisser reposer puis cuire les galettes à la poêle. Variante possible avec garniture (fromage, ail, herbes).', 'naans.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
     ('Bretzels', 6, 'Mélanger farine, levure, lait, eau, beurre et sel. Laisser lever 1h30. Former les bretzels, les pocher dans le bicarbonate puis les cuire au four 10 min à 230°C.', 'bretzels.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
-    ('Kesra', 1, 'Mélanger semoule et huile. Laisser reposer 15 min. Ajouter sel et eau pour obtenir une pâte homogène. Étaler en galette et cuire sur crêpière jusqu’à doré.', 'kesra.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées'));
+    ('Kesra', 1, 'Mélanger semoule et huile. Laisser reposer 15 min. Ajouter sel et eau pour obtenir une pâte homogène. Étaler en galette et cuire sur crêpière jusqu’à doré.', 'kesra.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Bases salées')),
+    ('Béchamel', 4, 'Faire fondre le beurre dans une casserole. Hors du feu ajouter la farine et fouetter. Remettre sur le feu et ajouter le lait progressivement tout en remuant, jusqu’à épaississement. Assaisonner à sa guise.', 'bechamel.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Condiments')),
+    ('Sauce échalotes vinaigre', 2, 'Faire revenir les échalotes dans un peu d’huile. Ajouter le vinaigre, l’eau puis le miel. Faire cuire 15-20 min à couvert. Servir avec magret de canard ou bœuf.', 'sauce-echalotes-vinaigre.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Condiments')),
+    ('Sauce aux champignons', 3, 'Faire revenir l’oignon et le beurre, ajouter l’ail et les champignons. Incorporer ketchup, sauces soja, huitre, Hoisin, cub or, vinaigre. Diluer fécule dans eau et ajouter. Cuire 5 min. Servir avec viande et nouilles.', 'sauce-champignons.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Condiments')),
+    ('Pickles', 1, 'Couper les légumes finement. Faire bouillir l’eau. Placer légumes dans le bocal, ajouter eau, vinaigre et sucre. Fermer et réfrigérer au moins une nuit. Déguster le lendemain.', 'pickles.jpg', (SELECT id FROM recipe_subcategory WHERE label = 'Condiments'));
 
 -- Insertion des ingrédients par recette
 INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
@@ -700,4 +710,30 @@ INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES
     ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Semoule extra-fine'), '500g'),
     ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Huile de tournesol'), '100g'),
     ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Sel'), '10g'),
-    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Eau'), '200g');
+    ((SELECT id FROM recipe WHERE title='Kesra'), (SELECT id FROM ingredient WHERE label='Eau'), '200g'),
+    ((SELECT id FROM recipe WHERE title='Béchamel'), (SELECT id FROM ingredient WHERE label='Beurre'), '50g'),
+    ((SELECT id FROM recipe WHERE title='Béchamel'), (SELECT id FROM ingredient WHERE label='Farine'), '50g'),
+    ((SELECT id FROM recipe WHERE title='Béchamel'), (SELECT id FROM ingredient WHERE label='Lait'), '500 mL'),
+    ((SELECT id FROM recipe WHERE title='Béchamel'), (SELECT id FROM ingredient WHERE label='Sel'), '1 pincée'),
+    ((SELECT id FROM recipe WHERE title='Béchamel'), (SELECT id FROM ingredient WHERE label='Poivre'), '1 pincée'),
+    ((SELECT id FROM recipe WHERE title='Sauce échalotes vinaigre'), (SELECT id FROM ingredient WHERE label='Échalote'), '2 à 3'),
+    ((SELECT id FROM recipe WHERE title='Sauce échalotes vinaigre'), (SELECT id FROM ingredient WHERE label='Vinaigre balsamique'), '50 mL'),
+    ((SELECT id FROM recipe WHERE title='Sauce échalotes vinaigre'), (SELECT id FROM ingredient WHERE label='Eau'), '50 mL'),
+    ((SELECT id FROM recipe WHERE title='Sauce échalotes vinaigre'), (SELECT id FROM ingredient WHERE label='Miel'), '1 càc'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Beurre'), '40g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Poivre'), '1 càc'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Champignons émincés'), '150g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Oignon'), '½'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Ail'), '1 gousse'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Ketchup'), '26g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Sauce huitre'), '36g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Sauce soja'), '30g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Sauce Hoisin'), '15g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Vinaigre balsamique'), '6g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Cub or'), '1'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Fécule de maïs'), '12g'),
+    ((SELECT id FROM recipe WHERE title='Sauce aux champignons'), (SELECT id FROM ingredient WHERE label='Sucre'), '12g'),
+    ((SELECT id FROM recipe WHERE title='Pickles'), (SELECT id FROM ingredient WHERE label='Sucre'), '50g'),
+    ((SELECT id FROM recipe WHERE title='Pickles'), (SELECT id FROM ingredient WHERE label='Vinaigre blanc'), '100g'),
+    ((SELECT id FROM recipe WHERE title='Pickles'), (SELECT id FROM ingredient WHERE label='Eau'), '150g'),
+    ((SELECT id FROM recipe WHERE title='Pickles'), (SELECT id FROM ingredient WHERE label='Légumes'), 'QS');
