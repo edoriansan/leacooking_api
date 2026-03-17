@@ -1,0 +1,22 @@
+spring:
+    application:
+        name: LeaCooking
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/leacooking
+        username: postgres
+        password: postgres
+
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+
+flyway:
+    locations: classpath:db/migration
+    enabled: true
+    repair: false
+    migrate: true
