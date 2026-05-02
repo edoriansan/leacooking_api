@@ -32,7 +32,7 @@ public class IngredientService {
         List<Ingredient> ingredients = ingredientRepository.findAll();
 
         if (ingredients.isEmpty()) {
-            throw new ApiException(ErrorEnum.E500, "No ingredients found");
+            throw new ApiException(ErrorEnum.E404, "No ingredients found");
         }
 
         return ingredients.stream()
