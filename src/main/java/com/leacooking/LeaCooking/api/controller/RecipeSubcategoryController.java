@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/subcategory/")
+@RequestMapping("/api/subcategory")
 public class RecipeSubcategoryController {
 
     private final RecipeSubcategoryService recipeSubcategoryService;

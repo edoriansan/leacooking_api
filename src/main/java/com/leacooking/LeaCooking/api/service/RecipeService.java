@@ -1,8 +1,10 @@
 package com.leacooking.LeaCooking.api.service;
 
 import com.leacooking.LeaCooking.api.config.error.ErrorEnum;
-import com.leacooking.LeaCooking.api.dto.recipe.RecipeDTO;
+import com.leacooking.LeaCooking.api.dto.recipe.RecipeRequestDTO;
+import com.leacooking.LeaCooking.api.dto.recipe.RecipeResponseDTO;
 import com.leacooking.LeaCooking.api.entity.Recipe;
+import com.leacooking.LeaCooking.api.entity.RecipeIngredient;
 import com.leacooking.LeaCooking.api.exception.ApiException;
 import com.leacooking.LeaCooking.api.mapper.RecipeIngredientMapper;
 import com.leacooking.LeaCooking.api.mapper.RecipeMapper;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -24,15 +27,23 @@ public class RecipeService {
     private final RecipeIngredientMapper recipeIngredientMapper;
 
     @Transactional(rollbackFor = Exception.class)
-    public RecipeDTO saveRecipe(RecipeDTO recipeToSave) {
-        Recipe recipe  = recipeRepository.save(
-                recipeMapper.toEntity(recipeToSave)
-        );
-        return recipeMapper.toDTO(recipe);
+    public RecipeResponseDTO saveRecipe(RecipeRequestDTO recipeToSave) {
+        Recipe recipe = recipeMapper.toEntity(recipeToSave);
+
+        if (recipeToSave.getRecipeIngredients() != null) {
+            Set<RecipeIngredient> ingredients = recipeToSave.getRecipeIngredients().stream()
+                    .map(recipeIngredientMapper::toEntity)
+                    .collect(Collectors.toSet());
+
+            ingredients.forEach(ingredient -> ingredient.setRecipe(recipe));
+            recipe.setRecipeIngredients(ingredients);
+        }
+
+        return recipeMapper.toDTO(recipeRepository.save(recipe));
     }
 
     @Transactional(readOnly = true)
-    public List<RecipeDTO> getAllRecipes() throws ApiException {
+    public List<RecipeResponseDTO> getAllRecipes() throws ApiException {
         List<Recipe> recipes = recipeRepository.findAll();
 
         if (recipes.isEmpty()) {
@@ -45,23 +56,25 @@ public class RecipeService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public RecipeDTO updateRecipe(Long recipeId, RecipeDTO recipeToSave) throws ApiException {
+    public RecipeResponseDTO updateRecipe(Long recipeId, RecipeRequestDTO recipeToSave) throws ApiException {
         Recipe recipe = recipeRepository.findById(recipeId)
-                .orElseThrow(() -> new ApiException(ErrorEnum.E404, "No recipe not found for id : " + recipeId));
+                .orElseThrow(() -> new ApiException(ErrorEnum.E404, "No recipe found for id : " + recipeId));
 
         recipeMapper.fromDTO(recipeToSave, recipe);
 
         if (recipeToSave.getRecipeIngredients() != null) {
-            recipe.setRecipeIngredients(
-                    recipeToSave.getRecipeIngredients().stream()
-                            .map(recipeIngredientMapper::toEntity)
-                            .collect(Collectors.toSet())
-            );
+            recipe.getRecipeIngredients().clear();
+            recipeRepository.saveAndFlush(recipe); // DELETE des anciens
+
+            Set<RecipeIngredient> ingredients = recipeToSave.getRecipeIngredients().stream()
+                    .map(recipeIngredientMapper::toEntity)
+                    .collect(Collectors.toSet());
+
+            ingredients.forEach(ingredient -> ingredient.setRecipe(recipe));
+            recipe.getRecipeIngredients().addAll(ingredients);
         }
 
-        Recipe updatedRecipe = recipeRepository.save(recipe);
-
-        return recipeMapper.toDTO(updatedRecipe);
+        return recipeMapper.toDTO(recipeRepository.save(recipe));
     }
 
     @Transactional(rollbackFor = Exception.class)

@@ -8,6 +8,7 @@ import com.leacooking.LeaCooking.api.mapper.RecipeCategoryMapper;
 import com.leacooking.LeaCooking.api.repository.RecipeCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +19,12 @@ public class RecipeCategoryService {
     private final RecipeCategoryRepository recipeCategoryRepository;
     private final RecipeCategoryMapper recipeCategoryMapper;
 
+    @Transactional(readOnly = true)
     public List<RecipeCategoryDTO> getAllCategories() throws ApiException {
         List<RecipeCategory> categories = recipeCategoryRepository.findAll();
 
         if (categories.isEmpty()) {
-            throw new ApiException(ErrorEnum.E500, "No categories found.");
+            throw new ApiException(ErrorEnum.E404, "No categories found.");
         }
 
         return categories.stream()
