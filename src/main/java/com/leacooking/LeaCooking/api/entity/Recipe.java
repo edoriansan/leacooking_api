@@ -34,6 +34,6 @@ public class Recipe {
     @JoinColumn(name = "id_recipe_subcategory", nullable = false)
     private RecipeSubcategory recipeSubcategory;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<RecipeIngredient> recipeIngredients = new LinkedHashSet<>();
 }

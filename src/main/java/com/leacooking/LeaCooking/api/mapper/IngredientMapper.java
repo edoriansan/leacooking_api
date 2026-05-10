@@ -5,6 +5,7 @@ import com.leacooking.LeaCooking.api.dto.ingredient.IngredientDTO;
 import com.leacooking.LeaCooking.api.entity.Ingredient;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(config = MapstructConfig.class)
 public interface IngredientMapper {
@@ -12,4 +13,8 @@ public interface IngredientMapper {
 
     @Mapping(target = "recipeIngredients", ignore = true)
     Ingredient toEntity(IngredientDTO ingredientDTO);
+
+    @Mapping(target = "recipeIngredients", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    void fromDTO(IngredientDTO ingredientDTO, @MappingTarget Ingredient ingredient);
 }
